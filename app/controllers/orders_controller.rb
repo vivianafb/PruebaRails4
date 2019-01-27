@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   
   def create
     @task = Task.find(params[:task_id])
-    @order = Order.new(task: @task, user: current_user)
+    @order = Order.new(task: @task, user: current_user, completed: true, completed_at: Time.now)
     if @order.save
       redirect_to tasks_path, notice: 'La tarea ha sido completada'
     else
@@ -14,5 +14,15 @@ class OrdersController < ApplicationController
 
   def index
   @orders = current_user.orders
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    if @order.completed == true
+      @order.update(completed: false, completed_at: nil)
+    else
+      @order.update(completed: true, completed_at: Time.now)
+    end
+    redirect_to tasks_path
   end
 end

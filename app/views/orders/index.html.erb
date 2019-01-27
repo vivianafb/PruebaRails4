@@ -3,7 +3,7 @@
     <tr>
         <td><%= order.task.title %></td>
         <td><%= order.task.description %></td>
-        <td><%= order.task.users.name %></td>
+        <td><%= order.task.users.first.email %></td>
 
     </tr>
     <% end %>

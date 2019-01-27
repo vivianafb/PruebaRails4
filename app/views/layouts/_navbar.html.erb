@@ -1,24 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
-  <a class="navbar-brand" href="#">ToDo</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
+  <a class="navbar-brand" href="<%= root_path %>">ToDo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="<%= orders_path %>">Tareas completadas <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<%= orders_path %>"> TareasCompletadas </a>
       </li>
-     
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Acceso</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-        </div>
-      </li>
-     
     </ul>
-  </div>
+      <ul class="nav navbar-nav navbar-right">
+      <div class="btnleft">
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <% if user_signed_in? %>
+              <%= current_user.email %>
+            <% else %> 
+              Access
+            <% end %>
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <% if user_signed_in? %>
+              <li><a href="<%= destroy_user_session_path(current_user)%>" data-method="DELETE">Salir</a></li>
+            <% else %>
+              <li><a href="<%= new_user_session_path %>">Ingresar</a></li>
+              <li><a href="<%= new_user_registration_path %>">Registrar</a></li>
+            <% end %>
+          </ul>
+        </li>
+        </div>
+      </ul>
+    </div>
 </nav>
