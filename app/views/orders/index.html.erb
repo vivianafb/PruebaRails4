@@ -1,0 +1,10 @@
+<table class="table">
+    <% @orders.each do |order| %>
+    <tr>
+        <td><%= order.task.title %></td>
+        <td><%= order.task.description %></td>
+        <td><%= order.task.users.name %></td>
+
+    </tr>
+    <% end %>
+</table>
