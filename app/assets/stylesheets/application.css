@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+ .alerta{
+     margin-top: 70px
+ }
