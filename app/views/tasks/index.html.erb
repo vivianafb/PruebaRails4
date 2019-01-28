@@ -1,42 +1,42 @@
 <h2 class="text-center">Fiestas Patrias</h2>
 <h3 class="text-center">Tareas que debes completar este 18!</h3>
-
-<div class="row">
-  <% @tasks.each_slice(3) do |row| %>
-    <% row.each do |task| %>
-      <% order = Order.find_by(user_id: current_user.id, task_id: task.id) %>
-       <% if order.nil? || (order.nil? == false && order.completed == false) %>
-        <div class='col-md-4 mt-4'>
-          <div class='card'>
-            <div class="card-header">
-              <%= task.title %>
+<div class="container">
+  <div class="row">
+    <% @task.each_slice(3) do |row| %>
+      <% row.each do |task| %>
+        <% order = Order.find_by(user_id: current_user.id, task_id: task.id) %>
+        <% if order.nil? || (order.nil? == false && order.completed == false) %>
+          <div class='col-md-4 mt-4'>
+            <div class='card'>
+              <div class="card-header">
+                <h3><%= task.title %></h3>
+              </div>
+                <%= image_tag task.photo, class:'img-fluid'%>
+              <div class='body'>
+              <p><%= task.description %></p>
+              </div>
+              <% if order.nil? %>
+                <%= link_to 'Completar', task_orders_path(task), class: 'btn btn-success', method: :post  %>
+              <% else %>
+                <%= link_to 'Completed', task_order_path(task, order), class: 'btn btn-success', method: :patch  %>
+              <% end %>
             </div>
-             <%= image_tag task.photo, class:'img-fluid'%>
-            <div class='body text-center'>
-             <%= task.description %>
-            </div>
-            <% if order.nil? %>
-              <%= link_to 'Completar', task_orders_path(task), class: 'btn btn-success', method: :post  %>
-            <% else %>
-              <%= link_to 'Completed', task_order_path(task, order), class: 'btn btn-success', method: :patch  %>
-            <% end %>
           </div>
-        </div>
-        <% elsif order.nil? == false && order.completed = true %>
-          <div class='col-md-4 mt-5'>
-           <div class='card text-white border-primary'>
-            <div class="card-header">
-              <%= task.title %>
+          <% elsif order.nil? == false && order.completed = true %>
+            <div class='col-md-4 mt-5'>
+              <div class='card text-white border-primary'>
+                <div class="card-header">
+                 <h3> <%= task.title %></h3>
+                </div>
+                  <%= image_tag task.photo, class:'img-fluid' %>
+                <div class='body text-center'>
+                  <p><%= task.description %></p>
+                </div>
+                <%= link_to 'Ver', task, class: 'btn btn-info' %>
+                <%= link_to 'Descompletar', task_order_path(task, order), class: 'btn btn-danger', method: :patch  %>          </div>
             </div>
-              <%= image_tag task.photo, class:'img-fluid' %>
-            <div class='body text-center'>
-              <%= task.description %>
-            </div>
-             <%= link_to 'Show', task, class: 'btn btn-info' %>
-             <%= link_to 'Uncompleted', task_order_path(task, order), class: 'btn btn-danger', method: :patch  %>          </div>
-        </div>
-
-        <% end %>
+          <% end %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

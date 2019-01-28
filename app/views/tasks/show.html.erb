@@ -1,10 +1,30 @@
-<div class='col-md-6 mt-5'>
-   <div class='card text-white border-primary', style='margin-top:100px'>
-     <%= image_tag @task.photo, class:'card-img-top' %>
-     <div class='body text-center'>
-       <%= @task.title %>
-       <br>
-       <%=@task.description %>
+<div class='col-md-5 offset-md-3'>
+   <div class='card text-dark', style='margin-top:100px'>
+        <h3><%= @task.title %></h3><br>
+         <%= image_tag @task.photo, class:'card-img-top' %>
+     <div class='body'>
+        <p><%=@task.description %></p>
      </div>
    </div>
  </div>
+
+ <h2> Ranking </h2>
+<hr>
+<div class='row'>
+  <% @orders = Order.all.where(task_id: @task.id) %>
+  <% @orders = @orders.order(completed_at: :asc) %>
+  <% @orders.each do |order| %>
+  <% if order.completed_at != nil %>
+    <div class="col-md-1"> 
+      <h3><%= @counter %>. </h3> 
+    </div>
+    <div class='col-md-11'>
+      <h3><%= User.find_by(id: order.user_id).name %></h3>
+      <img height="50" width="50" src= "<%= User.find_by(id: order.user_id).avatar %>">
+       <h4> Completado el  <%= order.completed_at %> </h4>
+      <% @counter += 1 %>
+    </div>
+    <% end %>
+  <% end%>
+  
+</div>

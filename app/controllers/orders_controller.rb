@@ -1,6 +1,12 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   
+  def index
+    @orders = current_user.orders
+    @orders = Order.all
+    @task = Task.all   
+  end
+  
   def create
     @task = Task.find(params[:task_id])
     @order = Order.new(task: @task, user: current_user, completed: true, completed_at: Time.now)
@@ -10,10 +16,6 @@ class OrdersController < ApplicationController
       redirect_to tasks_path, alert: 'La tarea no ha sido completada'
     end
     
-  end
-
-  def index
-  @orders = current_user.orders
   end
 
   def update

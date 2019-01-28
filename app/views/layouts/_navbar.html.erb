@@ -1,20 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
   <a class="navbar-brand" href="<%= root_path %>">ToDo</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
+  
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="<%= orders_path %>"> TareasCompletadas </a>
-      </li>
+        <a class="nav-link">
+        Completadas <%= @count %>/<%= Task.count %>
+      <span class="sr-only">(current)</span></a>
+  </li>   
     </ul>
       <ul class="nav navbar-nav navbar-right">
       <div class="btnleft">
-
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false", style='color:black'>
             <% if user_signed_in? %>
               <%= current_user.email %>
             <% else %> 
