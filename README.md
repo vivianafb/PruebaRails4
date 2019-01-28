@@ -4,7 +4,8 @@ En esta prueba, se tenia que lograr que un usuario se registrase y pudiera ver u
 Links:
 https://getbootstrap.com/docs/3.3/getting-started/ // 
 https://www.bootstrapcdn.com/bootswatch/ // 
-https://getbootstrap.com/docs/4.0/examples/navbar-top-fixed/ //
+https://getbootstrap.com/docs/4.0/examples/navbar-top-fixed/ // 
+https://guides.rubyonrails.org/active_record_migrations.html
 
 
 This README would normally document whatever steps are necessary to get the
